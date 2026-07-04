@@ -1,0 +1,338 @@
+/* style.css
+   Enhanced UI for GitHub Profile Finder
+   - Smooth transitions
+   - Improved spacing & typography
+   - Hover / focus effects
+   - Responsive layout
+   - Keeps existing HTML/JS functionality unchanged
+*/
+
+/* Optional font: Inter for improved typography (falls back to system fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+  /* Color palette (dark theme) */
+  --bg: #0b1220;
+  --bg-2: #0f1724;
+  --card: #0f1728;
+  --muted: #9aa4b2;
+  --muted-2: #8b98a6;
+  --text: #e6eef6;
+  --accent: #5eead4;
+  --accent-2: #60a5fa;
+  --danger: #ff7b7b;
+  --glass: rgba(255,255,255,0.03);
+
+  /* Layout tokens */
+  --radius: 14px;
+  --gap: 18px;
+  --container-max: 1100px;
+  --shadow-soft: 0 8px 24px rgba(2,6,23,0.55);
+  --shadow-strong: 0 18px 46px rgba(2,6,23,0.65);
+
+  /* Typography */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --base-size: 16px;
+}
+
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--base-size);
+  line-height: 1.45;
+  color: var(--text);
+  background:
+    radial-gradient(800px 400px at 10% 8%, rgba(96,165,250,0.04), transparent 12%),
+    linear-gradient(180deg, var(--bg), var(--bg-2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(18px, 3vw, 40px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background .4s ease;
+}
+
+/* Page container: centered card-like layout */
+main {
+  width: 100%;
+  max-width: var(--container-max);
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: 1fr;
+  align-items: start;
+  background: transparent;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 2px;
+}
+header h1 {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+header .subtitle {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Search form: elevated, rounded */
+#search-form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow .25s ease, transform .18s ease;
+}
+#search-form:focus-within {
+  box-shadow: var(--shadow-strong);
+  transform: translateY(-2px);
+}
+
+/* Input row */
+#search-form .input-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 820px;
+  align-items: center;
+}
+
+/* Text input */
+#username-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow .18s ease, border-color .18s ease, transform .12s ease;
+  box-shadow: none;
+}
+#username-input::placeholder { color: rgba(255,255,255,0.26); }
+#username-input:focus {
+  box-shadow: 0 6px 20px rgba(96,165,250,0.10);
+  border-color: var(--accent-2);
+  transform: translateY(-1px);
+}
+
+/* Button */
+#search-button {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #042029;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(96,165,250,0.12);
+  transition: transform .12s ease, box-shadow .18s ease, opacity .12s ease;
+  min-width: 110px;
+  letter-spacing: 0.01em;
+}
+#search-button:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 48px rgba(96,165,250,0.16);
+}
+#search-button:active {
+  transform: translateY(-1px) scale(.997);
+}
+#search-button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Message area */
+#message {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Profile and repos containers */
+#profile-container,
+#repos-container {
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  border-radius: var(--radius);
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: var(--shadow-soft);
+  transition: transform .18s ease, box-shadow .18s ease, background .2s ease;
+}
+
+/* Empty hint */
+#profile-container:empty,
+#repos-container:empty {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Profile card layout */
+.profile-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  flex-direction: row;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.profile-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-strong);
+}
+
+/* Avatar */
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 8px 26px rgba(2,6,23,0.6);
+  transition: transform .18s ease, box-shadow .18s ease, opacity .2s ease;
+}
+.avatar:hover {
+  transform: scale(1.03);
+}
+
+/* Info area */
+.info h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+.username a {
+  color: var(--accent-2);
+  text-decoration: none;
+  font-weight: 600;
+}
+.bio {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+/* Meta chips */
+.meta {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.chip {
+  background: rgba(255,255,255,0.02);
+  color: var(--muted);
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid rgba(255,255,255,0.02);
+  transition: background .15s ease, transform .12s ease;
+}
+.chip:hover {
+  background: rgba(255,255,255,0.03);
+  transform: translateY(-2px);
+}
+
+/* Repositories list */
+.repo-list {
+  margin-top: 12px;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.repo {
+  display: block;
+  padding: 12px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: transform .14s ease, box-shadow .18s ease, background .18s ease;
+  cursor: pointer;
+}
+.repo:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.55);
+  background: linear-gradient(180deg, rgba(96,165,250,0.02), rgba(255,255,255,0.02));
+}
+.repo a {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Small text and footers */
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+/* Focus-visible for accessibility */
+:focus-visible {
+  outline: 3px solid rgba(96,165,250,0.12);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Responsive layout:
+   - Small screens: single column
+   - Wider screens: two-column (profile left, repos right)
+*/
+@media (min-width: 920px) {
+  main {
+    grid-template-columns: 360px 1fr;
+  }
+
+  /* let search form span both columns */
+  #search-form {
+    grid-column: 1 / -1;
+  }
+
+  #profile-container {
+    align-self: start;
+    padding: 20px;
+  }
+
+  #repos-container {
+    align-self: start;
+    padding: 22px;
+  }
+
+  .profile-card {
+    gap: 20px;
+  }
+}
+
+/* Smaller devices tweaks */
+@media (max-width: 420px) {
+  .avatar { width: 80px; height: 80px; border-radius: 10px; }
+  #search-button { min-width: 86px; padding: 9px 12px; font-size: 0.95rem; }
+  header h1 { font-size: 1.15rem; }
+  .chip { padding: 6px 10px; font-size: 0.88rem; }
+}

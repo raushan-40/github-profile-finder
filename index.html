@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GitHub Profile Finder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>GitHub Profile Finder</h1>
+    <p class="subtitle">Search for a GitHub user and view their profile and repositories.</p>
+  </header>
+
+  <main>
+    <!-- Search form -->
+    <form id="search-form" role="search" aria-label="Search GitHub users">
+      <label for="username-input" class="sr-only">GitHub username</label>
+      <div class="input-row">
+        <input
+          id="username-input"
+          name="username"
+          type="text"
+          inputmode="text"
+          autocomplete="off"
+          placeholder="e.g. octocat"
+          required
+          aria-label="GitHub username"
+          aria-describedby="message"
+        />
+        <button id="search-button" type="submit" aria-label="Search for GitHub user">
+          Search
+        </button>
+      </div>
+    </form>
+
+    <!-- Status / message region (created here for screen readers) -->
+    <div id="message" role="status" aria-live="polite" aria-atomic="true" style="display:none;"></div>
+
+    <!-- Empty container where profile details will be inserted -->
+    <!-- tabindex allows us to move focus here after rendering for screen reader context -->
+    <section id="profile-container" role="region" aria-label="User profile" aria-live="polite" tabindex="-1"></section>
+
+    <!-- Empty container where repository list will be inserted -->
+    <section id="repos-container" role="region" aria-label="User repositories" aria-live="polite" tabindex="-1"></section>
+  </main>
+
+  <footer>
+    <small>Uses the public GitHub API. No authentication in this demo.</small>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
