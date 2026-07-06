@@ -13,12 +13,8 @@ https://githubbprofilefind.netlify.app/
 ---
 
 ## 📸 Preview
-<img width="1919" height="927" alt="image" src="https://github.com/user-attachments/assets/51ed8755-1aaa-4686-9c05-cad8051a1676" />
+<img width="1919" height="930" alt="image" src="https://github.com/user-attachments/assets/96ae5c71-42ba-4a33-86c3-ecbda33f3d0a" />
 
-
-<img width="1919" height="926" alt="image" src="https://github.com/user-attachments/assets/06fb488c-636e-400b-b5c0-78e34bd335c5" />
-
-<img width="1919" height="924" alt="image" src="https://github.com/user-attachments/assets/427909c4-82e6-455d-857e-8b1d2b954d00" />
 
 
 
