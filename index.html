@@ -1,54 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GitHub Profile Finder</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The API Hunter - GitHub Profile Finder</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>GitHub Profile Finder</h1>
-    <p class="subtitle">Search for a GitHub user and view their profile and repositories.</p>
-  </header>
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="header-container">
+            <h1>The API Hunter</h1>
+            <p class="subtitle">Search profiles or match them head-to-head in Battle Mode</p>
+            <button id="toggle-mode-btn" class="btn btn-secondary">Switch to Battle Mode ⚔️</button>
+        </div>
+    </header>
 
-  <main>
-    <!-- Search form -->
-    <form id="search-form" role="search" aria-label="Search GitHub users">
-      <label for="username-input" class="sr-only">GitHub username</label>
-      <div class="input-row">
-        <input
-          id="username-input"
-          name="username"
-          type="text"
-          inputmode="text"
-          autocomplete="off"
-          placeholder="e.g. octocat"
-          required
-          aria-label="GitHub username"
-          aria-describedby="message"
-        />
-        <button id="search-button" type="submit" aria-label="Search for GitHub user">
-          Search
-        </button>
-      </div>
-    </form>
+    <!-- Main Content Grid -->
+    <main class="main-container">
+        
+        <!-- SINGLE PROFILE SEARCH SECTION -->
+        <section id="single-search-section" class="search-section">
+            <form id="single-search-form" class="search-form">
+                <div class="input-group">
+                    <input type="text" id="single-username-input" placeholder="Enter GitHub username (e.g. octocat)" required autocomplete="off">
+                    <button type="submit" class="btn btn-primary">Search Profile</button>
+                </div>
+            </form>
+            
+            <!-- Output container for Single Profile & Repositories -->
+            <div id="single-output" class="output-area"></div>
+        </section>
 
-    <!-- Status / message region (created here for screen readers) -->
-    <div id="message" role="status" aria-live="polite" aria-atomic="true" style="display:none;"></div>
+        <!-- BATTLE MODE SECTION (Hidden by default) -->
+        <section id="battle-search-section" class="search-section hidden">
+            <form id="battle-search-form" class="search-form">
+                <div class="battle-input-container">
+                    <div class="input-group">
+                        <label for="player1-input">Challenger 1</label>
+                        <input type="text" id="player1-input" placeholder="Username 1" required autocomplete="off">
+                    </div>
+                    <div class="vs-divider">VS</div>
+                    <div class="input-group">
+                        <label for="player2-input">Challenger 2</label>
+                        <input type="text" id="player2-input" placeholder="Username 2" required autocomplete="off">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-battle">Initiate Battle! ⚔️</button>
+            </form>
 
-    <!-- Empty container where profile details will be inserted -->
-    <!-- tabindex allows us to move focus here after rendering for screen reader context -->
-    <section id="profile-container" role="region" aria-label="User profile" aria-live="polite" tabindex="-1"></section>
+            <!-- Output container for dual Battle Cards -->
+            <div id="battle-output" class="output-area"></div>
+        </section>
+        
+    </main>
 
-    <!-- Empty container where repository list will be inserted -->
-    <section id="repos-container" role="region" aria-label="User repositories" aria-live="polite" tabindex="-1"></section>
-  </main>
+    <!-- App Footer -->
+    <footer class="app-footer">
+        <p>Prodesk IT Frontend Sprint 3 - Mentorship Program</p>
+    </footer>
 
-  <footer>
-    <small>Uses the public GitHub API. No authentication in this demo.</small>
-  </footer>
-
-  <script src="script.js" defer></script>
+    <script src="app.js"></script>
 </body>
 </html>
